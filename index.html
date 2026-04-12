@@ -1,11 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Mi primera página</title>
+    <meta charset="UTF-8">
+    <title>Un pequeño rincón</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #fceabb, #f8b500);
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 100px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1em;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
 </head>
-<body style="font-family: Arial; text-align: center; margin-top: 50px;">
-    <h1>Hola, soy Rodrigo 👋</h1>
-    <p>Bienvenido a mi primera página web.</p>
-    <p>Estoy aprendiendo desarrollo web 🚀</p>
+<body>
+
+<div class="container">
+    <h1>✨ Un pequeño rincón en internet</h1>
+    
+    <p>
+        A veces, las cosas más simples son las que más significado tienen.
+        Este espacio es solo eso... algo sencillo, pero hecho con intención.
+    </p>
+
+    <button onclick="mostrarMensaje()">Descubrir más</button>
+
+    <p id="mensaje" class="hidden">
+        Hay personas que, sin hacer mucho, logran quedarse en tus pensamientos más de lo esperado.
+    </p>
+</div>
+
+<script>
+    function mostrarMensaje() {
+        document.getElementById("mensaje").style.display = "block";
+    }
+</script>
+
 </body>
 </html>
