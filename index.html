@@ -3,31 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Un pequeño rincón</title>
+
     <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(to right, #fceabb, #f8b500);
-            color: #333;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .container {
-            margin-top: 100px;
-            padding: 20px;
+        /* Partículas */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(0, 123, 255, 0.6);
+            border-radius: 50%;
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        .carta {
+            position: relative;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: aparecer 1.5s ease;
+            z-index: 2;
         }
 
         h1 {
-            font-size: 2.5em;
+            margin-bottom: 15px;
         }
 
         p {
-            font-size: 1.2em;
-            margin: 20px auto;
-            max-width: 500px;
+            font-size: 1.1em;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.6s;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         button {
+            margin-top: 20px;
             background-color: #333;
             color: white;
             border: none;
@@ -42,33 +82,64 @@
             background-color: #555;
         }
 
-        .hidden {
-            display: none;
-            margin-top: 20px;
-            font-style: italic;
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>✨ Un pequeño rincón en internet</h1>
-    
-    <p>
-        A veces, las cosas más simples son las que más significado tienen.
-        Este espacio es solo eso... algo sencillo, pero hecho con intención.
+<!-- Partículas -->
+<script>
+    for (let i = 0; i < 40; i++) {
+        let p = document.createElement("div");
+        p.className = "particle";
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.animationDuration = (6 + Math.random() * 6) + "s";
+        p.style.opacity = Math.random();
+        document.body.appendChild(p);
+    }
+</script>
+
+<div class="carta">
+    <h1>💌 Un pequeño rincón</h1>
+
+    <p id="msg1" class="visible">
+        A veces, lo más simple puede tener más intención de la que parece...
     </p>
 
-    <button onclick="mostrarMensaje()">Descubrir más</button>
-
-    <p id="mensaje" class="hidden">
-        Hay personas que, sin hacer mucho, logran quedarse en tus pensamientos más de lo esperado.
+    <p id="msg2">
+        Hay momentos en los que alguien aparece sin avisar… y se queda más de lo esperado.
     </p>
+
+    <p id="msg3">
+        Y aunque no siempre se diga, hay detalles que nacen solo porque esa persona existe.
+    </p>
+
+    <button id="btn" onclick="siguienteMensaje()">Descubrir más</button>
 </div>
 
 <script>
-    function mostrarMensaje() {
-        document.getElementById("mensaje").style.display = "block";
+    let paso = 1;
+
+    function siguienteMensaje() {
+        if (paso === 1) {
+            document.getElementById("msg2").classList.add("visible");
+            paso++;
+        } else if (paso === 2) {
+            document.getElementById("msg3").classList.add("visible");
+            paso++;
+        } else {
+            document.getElementById("btn").style.display = "none";
+        }
     }
 </script>
 
