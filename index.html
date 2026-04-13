@@ -152,7 +152,9 @@ for (let i = 0; i < 40; i++) {
 
     <button id="btn" onclick="siguiente()">Descubrir más</button>
 
-    <div id="final" class="final">✨</div>
+    <div id="final" class="final">
+    No todo tiene que decirse para sentirse.
+</div>
 </div>
 
 <script>
@@ -213,6 +215,48 @@ function siguiente() {
 
         paso++;
     }
+}
+</script>
+<script>
+// 🧠 hint oculto para curiosos
+// hint: intenta tocar 3 veces en cualquier parte de la pantalla 👀
+
+let taps = 0;
+
+document.body.addEventListener("click", () => {
+    taps++;
+
+    if (taps === 3) {
+        mostrarSecreto();
+    }
+});
+
+function mostrarSecreto() {
+    let secreto = document.createElement("div");
+
+    secreto.textContent = "A veces, lo interesante no está a simple vista.";
+    
+    secreto.style.position = "fixed";
+    secreto.style.bottom = "20px";
+    secreto.style.left = "50%";
+    secreto.style.transform = "translateX(-50%)";
+    secreto.style.background = "rgba(0,0,0,0.8)";
+    secreto.style.color = "white";
+    secreto.style.padding = "10px 20px";
+    secreto.style.borderRadius = "20px";
+    secreto.style.fontSize = "0.9em";
+    secreto.style.opacity = "0";
+    secreto.style.transition = "0.5s";
+
+    document.body.appendChild(secreto);
+
+    setTimeout(() => {
+        secreto.style.opacity = "1";
+    }, 100);
+
+    setTimeout(() => {
+        secreto.style.opacity = "0";
+    }, 4000);
 }
 </script>
 
