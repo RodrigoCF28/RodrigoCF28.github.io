@@ -174,6 +174,8 @@ function codigo1() {
     codeElement.innerHTML = "";
     escribirCodigo(`let interes = 0;
 
+// a veces, interactuar revela más...
+
 if (laVeo) {
     interes++;
 }`);
@@ -186,7 +188,10 @@ function codigo2() {
 
 if (laVeo) {
     interes += 10;
-}`);
+}
+
+// prueba interactuar un poco más...
+`);
 }
 
 // tercer código (más emocional)
@@ -232,31 +237,35 @@ document.body.addEventListener("click", () => {
 });
 
 function mostrarSecreto() {
-    let secreto = document.createElement("div");
+    let overlay = document.createElement("div");
 
-    secreto.textContent = "A veces, lo interesante no está a simple vista.";
-    
-    secreto.style.position = "fixed";
-    secreto.style.bottom = "20px";
-    secreto.style.left = "50%";
-    secreto.style.transform = "translateX(-50%)";
-    secreto.style.background = "rgba(0,0,0,0.8)";
-    secreto.style.color = "white";
-    secreto.style.padding = "10px 20px";
-    secreto.style.borderRadius = "20px";
-    secreto.style.fontSize = "0.9em";
-    secreto.style.opacity = "0";
-    secreto.style.transition = "0.5s";
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.background = "rgba(0,0,0,0.6)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "999";
 
-    document.body.appendChild(secreto);
+    let caja = document.createElement("div");
+    caja.textContent = "A veces, lo interesante no está a simple vista.";
+
+    caja.style.background = "white";
+    caja.style.padding = "20px";
+    caja.style.borderRadius = "15px";
+    caja.style.fontSize = "1em";
+    caja.style.textAlign = "center";
+    caja.style.maxWidth = "80%";
+
+    overlay.appendChild(caja);
+    document.body.appendChild(overlay);
 
     setTimeout(() => {
-        secreto.style.opacity = "1";
-    }, 100);
-
-    setTimeout(() => {
-        secreto.style.opacity = "0";
-    }, 4000);
+        overlay.remove();
+    }, 3500);
 }
 </script>
 
